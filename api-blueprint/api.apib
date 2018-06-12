@@ -1,0 +1,79 @@
+FORMAT: 1A
+HOST: http://localhost:8080
+
+# todo api
+todo application api
+
+## Data Structures
+### Tag
++ id: `1` (number)
++ name: `work` (string)
+
+### CreateTagInput
++ name: `work` (string, required)
+
+### Todo
++ id: `1` (number)
++ name: `prepare slides` (string)
++ done: `false` (boolean)
++ created: `2018-06-12T11:56:40.429+0000` (string)
++ updated: `2018-06-12T12:01:30.789+0000` (string)
++ tags: (array[Tag])
+
+### CreateTodoInput
++ name: 'prepare slides' (string, required)
++ tags: work (array[string], optional)
+
+### UpdateTodoInput
++ name: `updated name` (string, optional)
++ done: `true` (boolean, optional)
++ tags: work, talk (array[string], optional)
+
+## Group Todo
+
+## Todos resource [/todos/{id}]
+
+### get todo by id [GET]
++ Parameters
+    + id (string, required)
++ Response 200 (application/json)
+    + Attributes (Todo)
+
+### update todo [PUT]
++ Parameters
+    + id (string, required)
++ Request (application/json)
+    + Attributes (UpdateTodoInput)
++ Response 200 (application/json)
+    + Attributes (Todo)
+
+### delete todo [DELETE]
++ Parameters
+    + id (string, required)
++ Response 204
+
+### list todos [GET /todos?tag={tag}]
++ Parameters
+    + tag: `work` (string, optional) - filtering by tag name
++ Response 200 (application/json)
+    + Attributes (array[Todo])
+
+### create new todo [POST /todos]
++ Request (application/json)
+    + Attributes (CreateTodoInput)
++ Response 201 (application/json)
+    + Attributes (Todo)
+
+## Group Tag
+
+## Tags resource [/tags]
+
+### list tags [GET]
++ Response 200 (application/json)
+    + Attributes (array[Tag])
+
+### create new tag [POST]
++ Request (application/json)
+    + Attributes (CreateTagInput)
++ Response 201 (application/json)
+    + Attributes (Tag)
