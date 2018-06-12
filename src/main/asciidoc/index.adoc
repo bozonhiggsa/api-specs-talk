@@ -1,0 +1,5 @@
+= todo api
+
+include::todos-resource.adoc[]
+
+include::tags-resource.adoc[]

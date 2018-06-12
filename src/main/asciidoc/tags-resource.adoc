@@ -1,0 +1,18 @@
+= tags resource
+
+== list tags
+
+=== request:
+include::../../../target/generated-snippets/list-tags/http-request.adoc[]
+
+=== response:
+include::../../../target/generated-snippets/list-tags/http-response.adoc[]
+
+
+== create tag
+
+=== request:
+include::../../../target/generated-snippets/create-tag/http-request.adoc[]
+
+=== response:
+include::../../../target/generated-snippets/create-tag/http-response.adoc[]

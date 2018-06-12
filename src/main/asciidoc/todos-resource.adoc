@@ -1,0 +1,55 @@
+= todos resource
+
+== list todos
+
+=== request:
+include::../../../target/generated-snippets/list-todo/http-request.adoc[]
+
+=== response:
+include::../../../target/generated-snippets/list-todo/http-response.adoc[]
+
+
+== list todos by tag
+
+=== request:
+include::../../../target/generated-snippets/list-by-tag/http-request.adoc[]
+
+=== response:
+include::../../../target/generated-snippets/list-by-tag/http-response.adoc[]
+
+
+== get todo by id
+
+=== request:
+include::../../../target/generated-snippets/get-by-id/http-request.adoc[]
+
+=== response:
+include::../../../target/generated-snippets/get-by-id/http-response.adoc[]
+
+
+== create todo
+
+=== request:
+include::../../../target/generated-snippets/create-todo/http-request.adoc[]
+
+=== response:
+include::../../../target/generated-snippets/create-todo/http-response.adoc[]
+
+
+== update todo
+
+=== request:
+include::../../../target/generated-snippets/update-todo/http-request.adoc[]
+
+=== response:
+include::../../../target/generated-snippets/update-todo/http-response.adoc[]
+
+
+== delete todo
+
+=== request:
+include::../../../target/generated-snippets/delete-todo/http-request.adoc[]
+
+=== response:
+include::../../../target/generated-snippets/delete-todo/http-response.adoc[]
+
