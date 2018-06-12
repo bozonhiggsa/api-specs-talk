@@ -1,0 +1,101 @@
+#%RAML 1.0
+title: todo-api
+description: todo application api
+version: v1
+baseUri: http://localhost:8080
+mediaType:
+  - application/json
+
+types:
+  Tag:
+    type: object
+    properties:
+      id: integer
+      name: string
+
+  Todo:
+    type: object
+    properties:
+      id: integer
+      name: string
+      done: boolean
+      created: datetime
+      updated: datetime
+      tags:
+        type: Tag[]
+
+/tags:
+  get:
+    displayName: list tags
+    responses:
+      200:
+        body:
+          application/json:
+            type: Tag[]
+  post:
+    displayName: create new tag
+    body:
+      application/json:
+        type: object
+        properties:
+          name: string
+
+/todos:
+
+  get:
+    displayName: list todos
+    responses:
+      200:
+        body:
+          application/json:
+            type: Todo[]
+
+  post:
+    displayName: create new todo
+    body:
+      application/json:
+        type: object
+        properties:
+          name: string
+          tags:
+            type: string[]
+            required: false
+    responses:
+      201:
+        body:
+          application/json:
+            type: Todo
+
+  /{id}:
+    get:
+      displayName: get todo by id
+      responses:
+        200:
+          body:
+            application/json:
+              type: Todo
+    delete:
+      displayName: delete todo by id
+      responses:
+        204:
+          description: no content
+    put:
+      displayName: update todo
+      body:
+        application/json:
+          type: object
+          properties:
+            name:
+              type: string
+              required: false
+            done:
+              type: boolean
+              required: false
+            tags:
+              type: string[]
+              required: false
+      responses:
+        200:
+          body:
+            application/json:
+              type: Todo
