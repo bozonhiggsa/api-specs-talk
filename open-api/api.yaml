@@ -1,0 +1,192 @@
+openapi: 3.0.1
+
+info:
+  title: todo api
+  description: todo application api
+  version: v1
+
+paths:
+  /tags:
+    get:
+      summary: list tags
+      responses:
+        '200':
+          $ref: '#/components/responses/list-tags'
+
+    post:
+      summary: create new tag
+      requestBody:
+        $ref: '#/components/requestBodies/create-tag'
+      responses:
+        '201':
+          $ref: '#/components/responses/one-tag'
+
+  /todos:
+    get:
+      summary: list todos
+      parameters:
+        - $ref: '#/components/parameters/tag-filter'
+      responses:
+        '200':
+          $ref: '#/components/responses/list-todos'
+
+    post:
+      summary: create new todo
+      requestBody:
+        $ref: '#/components/requestBodies/create-todo'
+      responses:
+        '201':
+          $ref: '#/components/responses/one-todo'
+
+  /todos/{id}:
+    parameters:
+      - $ref: '#/components/parameters/todo-id'
+
+    get:
+      summary: get todo by id
+      responses:
+        '200':
+          $ref: '#/components/responses/one-todo'
+
+    delete:
+      summary: remove todo by id
+      responses:
+        '204':
+          description: no content
+
+    put:
+      summary: update todo
+      requestBody:
+        $ref: '#/components/requestBodies/update-todo'
+      responses:
+        '200':
+          $ref: '#/components/responses/one-todo'
+
+components:
+  schemas:
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+
+    Todo:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        done:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+
+  parameters:
+    tag-filter:
+      in: query
+      name: tag
+      required: false
+      schema:
+        type: string
+      description: tag name to filter todos by
+
+    todo-id:
+      in: path
+      name: id
+      required: true
+      description: todo id
+      schema:
+        type: integer
+
+
+  requestBodies:
+    create-tag:
+      description: a json object containing information for create tag operation
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+            required:
+              - name
+
+    create-todo:
+      description: a json object containing information for create todo operation
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              tags:
+                type: array
+                items:
+                  type: string
+            required:
+              - name
+    update-todo:
+      description: a json object containing information for update todo operation
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              done:
+                type: boolean
+              tags:
+                type: array
+                items:
+                  type: string
+
+  responses:
+    one-todo:
+      description: todo info
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Todo'
+
+    one-tag:
+      description: tag info
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Tag'
+
+
+    list-tags:
+      description: list of tags
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Tag'
+
+    list-todos:
+      description: list of todos
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Todo'
