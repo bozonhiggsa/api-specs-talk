@@ -4,7 +4,7 @@ Technologies:
 - Java 8;
 - Spring REST Doc;
 - RAML;
-Open API - Swagger UI.
+- Open API - Swagger UI.
 
 Prerequisites:
 - Better use the Maven 3;
